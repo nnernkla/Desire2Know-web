@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Desire 2 Know</title>
+<link href="D2Ksite.css" rel="stylesheet">
+<link href='http://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+<style type="text/css">
+    .active{
+        z-index:99;
+    }
+	#inputs input {
+    background: #efefef;
+    padding: 6px 5px;
+    margin: 0 0 5px 0;
+    width: 238px;
+    border: 1px solid #222222;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+    -moz-box-shadow: 0 1px 1px #efefef inset;
+    -webkit-box-shadow: 0 1px 1px #efefef inset;
+    box-shadow: 0 1px 1px #efefef inset;
+}
+#actions{width:250px; padding:0}
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="http://jquery-ui.googlecode.com/svn/tags/latest/ui/jquery.effects.core.js"></script>
+<script src="http://jquery-ui.googlecode.com/svn/tags/latest/ui/jquery.effects.slide.js"></script>
+
+<script>
+	$(document).ready(function(){
+		$('#login-trigger').click(function() {
+			$(this).next('#login-content').slideToggle();
+			$(this).toggleClass('active');                    
+			
+			if ($(this).hasClass('active')) $(this).find('span').html('&#x25B2;')
+				else $(this).find('span').html('&#x25BC;')
+			})
+	});
+	
+	
+	$(function () {
+
+    /* SET PARAMETERS */
+    var change_img_time     = 5000; 
+    var transition_speed    = 100;
+
+    var simple_slideshow    = $("#slideshow"),
+        listItems           = simple_slideshow.children('img'),
+        listLen             = listItems.length,
+        i                   = 0,
+
+        changeList = function () {
+
+            listItems.eq(i).hide("slide", {direction: 'left'}, 150,  function () {
+                i += 1;
+                if (i === listLen) {
+                    i = 0;
+                }
+                listItems.eq(i).show('slide', {direction: 'right'}, 150);
+            });
+
+        };
+
+    listItems.not(':first').hide();
+    setInterval(changeList, change_img_time);
+
+});
+</script>
+</head>
+<body>
+<div id="background"></div>
+<div id="main">
+	<div class="gridcontainer">
+		<div class="gridwrapper">
+			<div class="gridbox gridheader" style="margin-bottom:34px">
+				<div class="header">
+					<h1><span>D2K</span></h1>
+					<div class="headerbox">
+						<h1>Desire 2 Know</h1>
+					 <!--<img id="banner" src="../img/logo-main.png" alt="banner" style="width:100%;height:100%;border:0;">-->
+					</div>
+				</div>
+				<div id="break"> </div>
+				<div id="top-nav">
+					<ul id="nav-primary">
+					<li>
+								<a href="index.php" style="padding:0; width:90px" title="Home Page">
+								  <img src="img/home_icon_grey_128x128_more_space.png" alt="Home" style="width:42px;height:37px;border:0;">
+								</a>
+								</li>	
+						<li><a href="">About Us</a></li>
+						<li><a href="">Programs</a></li>
+						<li><a href="">Admission</a></li>
+						<li><a href="">FAQ</a></li>
+						<li><a href="">Contact Us</a></li>
+						<li id="login" style="float:right">
+							<a id="login-trigger" href="#">
+								Log in <span>&#x25BC;</span>
+							</a>
+							<div id="login-content" class="login" style="">
+								<section class="container">
+									<div >
+									 
+									  <form method="post" action="login.php">
+										 <fieldset id="inputs">
+											<input id="username" type="text" name="username" placeholder="Username" required>   
+											<input id="password" type="password" name="password" placeholder="Password" required>
+										</fieldset>
+										<fieldset id="actions">
+											<div style="width:100%">
+												<input type="submit" id="submit" value="Log in">
+												<label><input type="checkbox" checked="checked"> Keep me signed in</label>
+											</div>
+											<div style="width:100%">
+												<a href="resetd2kpage.php" style="text-decoration: underline; padding:2px !important;">Reset password</a>
+												<a href="d2KloginForm.php" style="text-decoration: underline; width:50px; padding:2px !important">Sign up</a>
+											</div>
+										</fieldset>
+									 </form> 
+									</div>
+								</section>
+							</div>                     
+						</li>
+					</ul>
+				</div>
+			</div>
+			
